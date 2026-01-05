@@ -67,7 +67,7 @@ There were several steps for preprocessing and cleaning up the email body text:
  Based on this analysis, I decided to test running the model with a maximum token sequence length of 256, which would significantly improve computational time to see if my high accuracy would be maintained. This held true and 256 became the value of this hyperparameter. I hypothesize this is due to how many of the ques that may signify phishing scams appear early in email body text, such as calls to action, prize rewards, or asking for information.
 
 
-##**Combating DataLeakage**
+## **Combating DataLeakage**
 
  In the initial test training run(unfinished_test_Training_DistilBERT), results were as follows:
 
@@ -119,9 +119,9 @@ There were several steps for preprocessing and cleaning up the email body text:
 
  The dataset was split into stratified groups:
 
- Train:       %80   ~ 59562  emails (subsampled to 30000 for compute time)
- Valiation:   %10   ~ 7446   emails
- Test:        %10   ~ 7446   emails
+               Train:       %80   ~ 59562  emails (subsampled to 30000 for compute time)
+               Valiation:   %10   ~ 7446   emails
+               Test:        %10   ~ 7446   emails
 
  Then, to optimize computing time, a randomized subsample of the training data was implemented. I used a randomized 30,000 emails from the train group. This lowered computation time yet preserved the diversity of the dataset. Next steps, when I have access to more computing power, would be to remove this step.
 
@@ -143,33 +143,33 @@ After initial test runs with these hyperparameters achieved extraordinarily high
 
 ## **Model Evaluation and Results**
 
-=== Best epoch validation statistics ===
-Val Loss:            0.0416
-Val Accuracy:        0.9909
-Val Precision:       0.9901
-Val Recall :         0.9907
-Val F1  :            0.9904
-
-=== Best model final report on stratified test data ===
-Test Loss:           0.0387
-Test Accuracy:       0.9915
-Test Precision:      0.9896
-Test Recall :        0.9926
-Test F1  :           0.9911
-
-=== Test set confusion matrix ===
- Phishing       [3876   37]
- Non-Phishing   [  26 3507] 
-
-=== Test set classification report ===
- precision    recall  f1-score   support
-
- 0     0.9933    0.9905    0.9919      3913
- 1     0.9896    0.9926    0.9911      3533
-
- accuracy                            0.9915      7446
- macro avg       0.9914    0.9916    0.9915      7446
- weighted avg    0.9915    0.9915    0.9915      7446
+         === Best epoch validation statistics ===
+              Val Loss:            0.0416
+              Val Accuracy:        0.9909
+              Val Precision:       0.9901
+              Val Recall :         0.9907
+              Val F1  :            0.9904
+              
+              === Best model final report on stratified test data ===
+              Test Loss:           0.0387
+              Test Accuracy:       0.9915
+              Test Precision:      0.9896
+              Test Recall :        0.9926
+              Test F1  :           0.9911
+              
+              === Test set confusion matrix ===
+               Phishing       [3876   37]
+               Non-Phishing   [  26 3507] 
+              
+              === Test set classification report ===
+               precision    recall  f1-score   support
+              
+               0     0.9933    0.9905    0.9919      3913
+               1     0.9896    0.9926    0.9911      3533
+              
+               accuracy                            0.9915      7446
+               macro avg       0.9914    0.9916    0.9915      7446
+               weighted avg    0.9915    0.9915    0.9915      7446
 
 
 
@@ -203,7 +203,7 @@ These results were excellent. There is also more confidence behind them because 
 - Using a variety of metrics to analyze the performance of the model to fit the task. Multiple evaluation types, such as Accuracy, Precision, Recall, and F1, were all useful metrics that provided a more accurate and comprehensive overview of the model's performance when combined. Their consistency across the results also brings confidence to the effectiveness of the final model.
 
 
-###***Social Impact and Broader Implications***
+### **Social Impact and Broader Implications**
 Phishing is a major cybersecurity threat with dire consequences. Phishing can lead to financial loss, identity theft, and even erosion of trust in digital communication. Phishing scams often attempt to target vulnerable populations who may not have the ability to recognize threats as effectively. However, this is also an incredibly pervasive issue with hundreds of thousands of people falling for or being affected by phishing. There is a huge opportunity for social good in combating phishing if people have access to robust tools to confidently identify these threats. 
 
 Phishing detection systems like this one can contribute to:
@@ -212,11 +212,11 @@ Phishing detection systems like this one can contribute to:
 - Increased digital safety for vulnerable populations
 
 
-### ***Limitations***
+### **Limitations**
 
  Some limitations may arise from how the dataset was compiled from multiple sources, and it did include exact duplicates. Additionally, many of the emails were stylistically similar and, on average, very short in length, with a median of 735 characters. Because the model performed so exceptionally well, there is a risk of overfitting. Using a completely stratified final test was intended to mitigate and test this; however, it remains a real possibility. Additionally, if a more robust tool were to be developed, I would likely adjust my methodology to minimize the impact of computing time on decision-making. Many of my choices for this project were based on my limited time and computational abilities.
 
-### ***Future Improvement*** 
+### **Future Improvement**
 
 For future improvement, my next step would be to transfer training and save the model from Google Colab to another environment. This way, the model could be accessed and used beyond the brief allocated runtime slot that the free version of Colab used here. Then I would implement the ability to feed a text file with email body text into the trained model so it could classify specific email examples. This step would make the project and model more applicable to real-world situations. This model would be a tool used to classify and inform users based on individually entered emails. An even further development, if I were to continue this project, would be to connect it to a website or a browser extension that would be accessible to the public. This development would allow more people to have access to the social good of an accurate tool that can identify and warn against dangerous phishing scams in emails. Creating a phishing detection tool that achieves the same results as this model would be an excellent example of social good.
 
@@ -228,4 +228,5 @@ Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019, June 7). Bert: Pre-tra
 ###Articles cited at the request of dataset authors:
 
 Al-Subaiey, A., Al-Thani, M., Alam, N. A., Antora, K. F., Khandakar, A., & Zaman, S. A. U. (2024, May 19). Novel Interpretable and Robust Web-based AI Platform for Phishing Email Detection. ArXiv.org. https://arxiv.org/abs/2405.11619
+
 
